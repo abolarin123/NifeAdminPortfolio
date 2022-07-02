@@ -11,14 +11,12 @@ if($check==true){
     $sql ='SELECT * FROM `tbl_users` WHERE email ="$email"';
     $result = mysqli_query($con,$sql);
   // echo mysqli_num_rows($result);
-   if (mysqli_num_rows($result)==0) {
+   if (mysqli_num_rows($result)>0) {
     //print true;
-$sql ='INSERT INTO `tbl_users`( `username`, `email`, `password`) VALUES ($username,$email,$password)';
-$result = mysqli_query($con,$sql);
+    $sql ="INSERT INTO `tbl_users`( `username`, `email`, `password`) VALUES ('$username', '$email', '$password')";
+    $result = mysqli_query($con, $sql);
    } else {
     # code...
-
-
     $_SESSION['record'] = "Email already exists";
     header("Location: ../views/auth/register.php ");
    }
